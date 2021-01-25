@@ -2,21 +2,12 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { Ctx, MoveMap, PlayerID, State, Game } from 'boardgame.io';
 import React from 'react';
-import { GameInterface } from './game';
+import { GameInterface, BoardProps } from './types';
 
-interface BoardProps<GameInterface> {
-  G: GameInterface;
-  ctx: Ctx;
-  // moves: MoveMap<GameInterface, Ctx>;
-  moves: any;
-  // S: State<GameInterface, Ctx>;
-  playerID?: PlayerID | null;
-  isActive: boolean;
-}
-
-export default class TicTacToeBoard extends React.Component<
-  BoardProps<GameInterface>
-> {
+// export default class TicTacToeBoard extends React.Component<
+//   BoardProps<GameInterface>
+// > {
+export default class TicTacToeBoard extends React.Component<BoardProps> {
   onClick = (id: number) => () => {
     // this.props.moves.clickCell(id);
     const {

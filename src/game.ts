@@ -56,7 +56,7 @@ export const TicTacToe: Game<GameInterface> = {
   },
 
   ai: {
-    enumerate: (G: GameInterface, ctx: Ctx) => {
+    enumerate: (G: GameInterface) => {
       const moves = [];
       for (let i = 0; i < 9; i += 1) {
         if (G.cells[i] === null) {
