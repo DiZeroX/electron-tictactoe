@@ -14,7 +14,8 @@
     "start:main": "cross-env NODE_ENV=development electron -r ./.erb/scripts/BabelRegister ./src/main.dev.ts",
     "start:renderer": "cross-env NODE_ENV=development webpack serve --config ./.erb/configs/webpack.config.renderer.dev.babel.js",
     "test": "jest",
-    "serve": "cross-env NODE_ENV=development node -r esm src/server.js"
+    "serve": "cross-env NODE_ENV=development node -r esm src/server.js",
+    "heroku-postbuild": "yarn run tsc --project tsconfig-server.json"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
