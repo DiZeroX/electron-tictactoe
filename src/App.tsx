@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import { Client } from 'boardgame.io/react';
 import { SocketIO } from 'boardgame.io/multiplayer';
 import { TicTacToe } from './game';
 import { GameInterface } from './types';
-import icon from '../assets/icon.svg';
 import TicTacToeBoard from './Board';
+import Singleplayer from './singleplayer';
+// import Multiplayer from './multiplayer';
+import Spectator from './spectator';
+// import Authenticated from './authenticated';
+import Bots from './bots';
+// import AdvancedAI from './advanced-ai';
+import GameMenu from './GameMenu';
 
 // const Hello = () => {
 //   return (
@@ -50,13 +56,13 @@ const TTTClient = Client<GameInterface>({
   multiplayer: SocketIO({ server: 'localhost:8000' }),
 });
 
-const Game = () => (
-  <div>
-    <TTTClient />
-  </div>
-);
+// const Game = () => (
+//   <div>
+//     <TTTClient />
+//   </div>
+// );
 
-function AppTest() {
+function Multiplayer() {
   const [playerID, setPlayerID] = useState('');
 
   if (playerID === '') {
@@ -83,7 +89,15 @@ export default function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/" component={AppTest} />
+        <Route exact path="/" component={GameMenu} />
+        <Route path="/spectator" text="Spectator" component={Spectator} />
+        <Route path="/bots" text="Singleplayer vs AI" component={Bots} />
+        <Route
+          path="/singleplayer"
+          text="Singleplayer"
+          component={Singleplayer}
+        />
+        <Route path="/multiplayer" text="Multiplayer" component={Multiplayer} />
       </Switch>
     </Router>
   );
