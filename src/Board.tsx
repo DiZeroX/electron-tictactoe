@@ -1,13 +1,18 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { Ctx, MoveMap, PlayerID, State, Game } from 'boardgame.io';
+import { BoardProps } from 'boardgame.io/react';
 import React from 'react';
-import { GameInterface, BoardProps } from './types';
+import { GameInterface } from './types';
+import xToken from '../assets/tokens/X_mark.png';
 
+const path = require('path');
 // export default class TicTacToeBoard extends React.Component<
 //   BoardProps<GameInterface>
 // > {
-export default class TicTacToeBoard extends React.Component<BoardProps> {
+export default class TicTacToeBoard extends React.Component<
+  BoardProps<GameInterface>
+> {
   onClick = (id: number) => () => {
     // this.props.moves.clickCell(id);
     const {
@@ -47,7 +52,14 @@ export default class TicTacToeBoard extends React.Component<BoardProps> {
         const id = 3 * i + j;
         cellsTest.push(
           <td style={cellStyle} key={id} onClick={() => this.onClick(id)}>
-            {cells[id]}
+            {cells[id] === '0' ? (
+              <img src={xToken} alt="X" />
+            ) : (
+              <img
+                src={path.join(__dirname, 'assets', 'tokens', 'x2.png')}
+                alt="O"
+              />
+            )}
           </td>
         );
       }
